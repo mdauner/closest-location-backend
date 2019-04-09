@@ -1,12 +1,14 @@
 const express = require('express')
-const { getLocation } = require('./utils.js')
+const { getLocationFromCacheOrGeocode } = require('./utils.js')
 
 const app = express()
 
 app.get('/closest-locations', async (req, res) => {
   const { locations: locationNames } = req.query
 
-  const locations = await Promise.all(locationNames.map(getLocation))
+  const locations = await Promise.all(
+    locationNames.map(getLocationFromCacheOrGeocode)
+  )
   const locationsByName = {}
 
   locationNames.forEach((name, index) => {
