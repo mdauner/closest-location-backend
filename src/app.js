@@ -1,4 +1,5 @@
 const express = require('express')
+const geolib = require('geolib')
 const { getLocationFromCacheOrGeocode } = require('./utils.js')
 
 const app = express()
@@ -19,7 +20,16 @@ app.get('/closest-locations', async (req, res) => {
     locationsByName[name] = locations[index]
   })
 
-  return res.send(locationsByName)
+  const data = Object.keys(locationsByName).map(name => ({
+    location: name,
+    closestLocation: geolib.findNearest(
+      locationsByName[name],
+      locationsByName,
+      1
+    ).key
+  }))
+
+  return res.send(data)
 })
 
 module.exports = app
