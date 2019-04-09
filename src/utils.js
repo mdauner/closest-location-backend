@@ -24,5 +24,6 @@ async function getLocationFromCacheOrGeocode(locationName) {
 }
 
 module.exports = {
+  cache,
   getLocationFromCacheOrGeocode
 }
