@@ -13,7 +13,7 @@ app.use(express.static('public'))
  *
  * @apiParam {String[]} locations List of location names, e.g. Berlin', 'The Statue of Liberty'.
  *
- * @apiSuccess {Object[]} - List of closest location paris.
+ * @apiSuccess {Object[]} - List of closest location parts.
  * @apiSuccess {Number}   -.location The location name.
  * @apiSuccess {String}   -.closestLocation The name of the closest location.
  * @apiSuccessExample {json} Success
