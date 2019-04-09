@@ -39,14 +39,17 @@ describe('/closest-locations', () => {
         expect(JSON.parse(response.text)).toEqual([
           {
             closestLocation: 'Paris',
+            distance: 878606,
             location: 'Berlin'
           },
           {
             closestLocation: 'Berlin',
+            distance: 878606,
             location: 'Paris'
           },
           {
             closestLocation: 'Paris',
+            distance: 5857061,
             location: 'The Statue of Liberty'
           }
         ])

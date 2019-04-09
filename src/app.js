@@ -14,21 +14,25 @@ app.use(express.static('public'))
  * @apiParam {String[]} locations List of location names, e.g. Berlin', 'The Statue of Liberty'.
  *
  * @apiSuccess {Object[]} - List of closest location parts.
- * @apiSuccess {Number}   -.location The location name.
+ * @apiSuccess {String}   -.location The location name.
  * @apiSuccess {String}   -.closestLocation The name of the closest location.
+ * @apiSuccess {Number}   -.distance The distance to the closest location (in meter).
  * @apiSuccessExample {json} Success
  *  HTTP/1.1 200 OK
  *    [{
  *      location: 'Berlin',
- *      closestLocation: 'Paris'
+ *      closestLocation: 'Paris',
+ *      distance: 878606
  *    },
  *    {
  *      location: 'The Statue of Liberty',
- *      closestLocation: 'Paris'
+ *      closestLocation: 'Paris',
+ *      distance: 5857061
  *    },
  *    {
  *      location: 'Paris',
- *      closestLocation: 'Berlin'
+ *      closestLocation: 'Berlin',
+ *      distance: 878606
  *    }]
  */
 app.get('/closest-locations', async (req, res) => {
@@ -59,14 +63,18 @@ app.get('/closest-locations', async (req, res) => {
       .send('two valid locations are required to calculate closest locations')
   }
 
-  const data = Object.keys(locationsByName).map(name => ({
-    location: name,
-    closestLocation: geolib.findNearest(
+  const data = Object.keys(locationsByName).map(name => {
+    const closestLocation = geolib.findNearest(
       locationsByName[name],
       locationsByName,
       1
-    ).key
-  }))
+    )
+    return {
+      location: name,
+      closestLocation: closestLocation.key,
+      distance: closestLocation.distance
+    }
+  })
 
   return res.send(data)
 })
