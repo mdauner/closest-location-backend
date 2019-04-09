@@ -4,6 +4,33 @@ const { getLocationFromCacheOrGeocode } = require('./utils.js')
 
 const app = express()
 
+app.use(express.static('public'))
+
+/**
+ * @api {get} /closest-locations Request closest locations
+ * @apiName ClosestLocations
+ * @apiGroup Locations
+ *
+ * @apiParam {String[]} locations List of location names, e.g. Berlin', 'The Statue of Liberty'.
+ *
+ * @apiSuccess {Object[]} - List of closest location paris.
+ * @apiSuccess {Number}   -.location The location name.
+ * @apiSuccess {String}   -.closestLocation The name of the closest location.
+ * @apiSuccessExample {json} Success
+ *  HTTP/1.1 200 OK
+ *    [{
+ *      location: 'Berlin',
+ *      closestLocation: 'Paris'
+ *    },
+ *    {
+ *      location: 'The Statue of Liberty',
+ *      closestLocation: 'Paris'
+ *    },
+ *    {
+ *      location: 'Paris',
+ *      closestLocation: 'Berlin'
+ *    }]
+ */
 app.get('/closest-locations', async (req, res) => {
   const { locations: locationNames } = req.query
 
