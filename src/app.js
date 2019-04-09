@@ -12,6 +12,9 @@ app.get('/closest-locations', async (req, res) => {
   const locationsByName = {}
 
   locationNames.forEach((name, index) => {
+    if (!locations[index]) {
+      return
+    }
     // eslint-disable-next-line prefer-destructuring
     locationsByName[name] = locations[index]
   })
