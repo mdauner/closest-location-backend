@@ -1,0 +1,22 @@
+{
+  "name": "closest-locations-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "nodemon": "^1.18.11"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "prettier": "^1.16.4"
+  }
+}
