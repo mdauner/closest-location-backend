@@ -1,5 +1,8 @@
 # Closest Locations API
 
+This Express API has one endpoint `/closest-locations`, which expects a list of location names.
+It returns a list of closest locations for each location. More info can be found in the [documentation](https://closest-locations.herokuapp.com/apidoc)
+
 ## Demo
 
 The API is deployed on Heroku:
