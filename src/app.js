@@ -1,8 +1,11 @@
 const express = require('express')
+const cors = require('cors')
 const geolib = require('geolib')
 const { getLocationFromCacheOrGeocode } = require('./utils.js')
 
 const app = express()
+
+app.use(cors())
 
 app.use(express.static('public'))
 

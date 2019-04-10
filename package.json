@@ -11,6 +11,7 @@
     "apidoc": "apidoc -i src/ -o public/apidoc/"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "geolib": "^2.0.24",
     "node-cache": "^4.2.0",
